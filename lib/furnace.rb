@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'http/httpClient'
+require 'github'
 
-client = HttpClient.new('api.github.com', true)
-puts client.get('/repos/andypaxo/euler/commits')
+github = Github.new
+p github.grab_repo_names('andypaxo')
