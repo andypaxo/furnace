@@ -3,12 +3,13 @@ require 'web/httpClient'
 
 class Github
 
-	def initialize
-		@client = HttpClient.new('api.github.com', true)
+	def initialize(client)
+		client.set_server('api.github.com', true)
+		@client = client
 	end
 	
-	def grab_commits(user, repo)
-		raw = @client.get("/repos/#{user}/#{repo}/commits")
+	def grab_activity(user)
+		raw = @client.get("/users/#{user}/received_events")
 		JSON.parse(raw)
 	end
 	

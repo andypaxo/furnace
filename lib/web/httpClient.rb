@@ -2,7 +2,7 @@ require 'net/http'
 require 'net/https'
 
 class HttpClient
-	def initialize(server, useHttps)
+	def set_server(server, useHttps)
 		port = useHttps ? 443 : 80
 		@http = Net::HTTP.new(server, port)
 		@http.use_ssl = useHttps
