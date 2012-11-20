@@ -1,2 +1,4 @@
 source :rubygems
-gem "rspec"
+gem 'rspec'
+gem 'sinatra', '1.1.0'
+gem 'thin'
