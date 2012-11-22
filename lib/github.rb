@@ -1,7 +1,9 @@
 require 'json'
-require 'web/httpClient'
+require 'lib/web/httpClient'
 
 class Github
+
+	# TODO : This class needs some way of handling HTTP errors
 
 	def initialize(client)
 		client.set_server('api.github.com', true)
@@ -9,6 +11,7 @@ class Github
 	end
 	
 	def grab_activity(user)
+		
 		raw = @client.get("/users/#{user}/received_events")
 		JSON.parse(raw)
 	end

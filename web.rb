@@ -1,9 +1,10 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'sinatra'
-require 'github'
+require 'lib/github'
 
 
 get '/' do
 	github = Github.new(HttpClient.new)
-	return github.grab_repo_names('andypaxo').to_s
+	log = github.grab_activity('andypaxo')
+	haml :git_activity, :locals => { :log => log }
 end
