@@ -8,3 +8,5 @@
 				%li
 					%img{:src => entry['actor']['avatar_url'] + '&s=32'}
 					%span= entry['type']
+					- (entry['payload']['commits'] || []).each do |commit|
+						%p= commit['message']
