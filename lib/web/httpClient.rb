@@ -8,14 +8,28 @@ class HttpClient
 		@http.use_ssl = useHttps
 	end
 	
+	def set_params(params)
+		# Sketch-tastic lack of escaping while building query string
+		@params = "?" + (params.map { |name, value|
+			"#{name}=#{value}"
+		}.join('&'))
+	end
+	
 	def post(path, data)
-		request = Net::HTTP::Post.new(path)
+		request = Net::HTTP::Post.new(make_uri(path))
 		request.body = data
+			
 		@http.request(request).body
 	end
 	
 	def get(path)
-		request = Net::HTTP::Get.new(path)
+		request = Net::HTTP::Get.new(make_uri(path))
 		@http.request(request).body
 	end	
+	
+	def make_uri(path)
+		uri = URI.encode(path + @params)
+		puts "Making request to #{uri}"
+		uri
+	end
 end

@@ -4,5 +4,5 @@
 	%body
 		%h1 Git activity
 		%ul
-		- log.each do |entry|
-			%li= entry
+			- log.each do |entry|
+				%li= entry['type']

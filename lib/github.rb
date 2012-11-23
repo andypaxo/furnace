@@ -10,6 +10,10 @@ class Github
 		@client = client
 	end
 	
+	def set_access_token(token)
+		@client.set_params({:access_token=>token})
+	end
+	
 	def grab_activity(user)
 		
 		raw = @client.get("/users/#{user}/received_events")
