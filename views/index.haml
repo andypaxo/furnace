@@ -3,6 +3,7 @@
 		%title The Furnace
 	%body
 		%h1 The Furnace
+		%h2 GitHub
 		%form{:action => '/activity', :method => 'POST'}
 			%label GitHub userame
 			%input{:name => 'user'}
@@ -11,4 +12,15 @@
 			%input{:name => 'auth'}
 			%br
 			%input{:value => 'View notifications', :type => 'submit'}
-			
+		%h2 CruiseControl.net
+		%form{:action => '/cc_build', :method => 'POST'}
+			%label Server
+			%input{:name => 'server'}
+			%br
+			%label Userame
+			%input{:name => 'user'}
+			%br
+			%label Password
+			%input{:name => 'pass'}
+			%br
+			%input{:value => 'View build status', :type => 'submit'}
