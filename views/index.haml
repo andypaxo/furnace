@@ -1,0 +1,14 @@
+%html
+	%head
+		%title The Furnace
+	%body
+		%h1 The Furnace
+		%form{:action => '/activity', :method => 'POST'}
+			%label GitHub userame
+			%input{:name => 'user'}
+			%br
+			%label Access token
+			%input{:name => 'auth'}
+			%br
+			%input{:value => 'View notifications', :type => 'submit'}
+			

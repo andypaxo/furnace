@@ -9,7 +9,6 @@ class HttpClient
 	end
 	
 	def set_params(params)
-		# Sketch-tastic lack of escaping while building query string
 		@params = "?" + (params.map { |name, value|
 			"#{name}=#{value}"
 		}.join('&'))
