@@ -1,8 +1,10 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'sinatra'
 require 'haml'
-require 'lib/github'
 require 'base64'
+require 'net/http'
+require 'lib/github'
+require 'lib/cruise'
 
 get '/' do
 	haml :index
@@ -22,9 +24,13 @@ end
 
 post '/cc_build' do
 	auth = Base64.encode64("#{params[:user]}:#{params[:pass]}")
-	redirect "/cc_build/#{params[:server]}?auth=#{auth}"
+	server = URI.encode_www_form_component(params[:server])
+	redirect "/cc_build?server=#{server}&auth=#{auth}"
 end
 
-get '/cc_build/:server' do
-	return Base64.decode64(params[:auth])
+get '/cc_build' do
+	server = HttpClient.new.set_server(params[:server], false)
+	cruise = Cruise.new(server)
+	# params[:server] + ':' + Base64.decode64(params[:auth])
+	cruise.grab_status
 end

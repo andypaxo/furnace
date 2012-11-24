@@ -6,8 +6,7 @@ class Github
 	# TODO : This class needs some way of handling HTTP errors
 
 	def initialize(client)
-		client.set_server('api.github.com', true)
-		@client = client
+		@client = client.set_server('api.github.com', true)
 	end
 	
 	def set_access_token(token)

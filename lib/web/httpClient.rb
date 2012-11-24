@@ -6,6 +6,8 @@ class HttpClient
 		port = useHttps ? 443 : 80
 		@http = Net::HTTP.new(server, port)
 		@http.use_ssl = useHttps
+		@params = ''
+		self
 	end
 	
 	def set_params(params)
