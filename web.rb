@@ -31,6 +31,9 @@ end
 get '/cc_build' do
 	server = HttpClient.new.set_server(params[:server], false)
 	cruise = Cruise.new(server)
-	# params[:server] + ':' + Base64.decode64(params[:auth])
-	cruise.grab_status
+	auth = Base64.decode64(params[:auth])
+	user, pass = auth.split(':')
+	
+	response.headers['Content-Type'] = 'text/xml'
+	cruise.grab_status(user, pass)
 end
