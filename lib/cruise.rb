@@ -13,11 +13,18 @@ class Cruise
 		session_token = get_session_token(user, pass)
 		response = get_status(session_token)
 		
-		response
+		p response
+		
+		response_xml = REXML::Document.new response
+		response_xml.elements[1].each.map { |project|
+			{
+				:name => project.attributes['name'],
+				:status => project.attributes['buildStatus']
+			}
+		}
 	end
 	
 	def get_session_token(user, pass)
-		# Need to use passed credentials
 		xml =
 '<loginMessage
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

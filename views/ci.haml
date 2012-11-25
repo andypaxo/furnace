@@ -1,0 +1,10 @@
+%html
+	%head
+		%title Build Status - The Furnace
+	%body
+		%h1 Build Status
+		%ul
+			- status.each do |project|
+				%li
+					%strong= project[:name]
+					%span= project[:status]

@@ -34,6 +34,6 @@ get '/cc_build' do
 	auth = Base64.decode64(params[:auth])
 	user, pass = auth.split(':')
 	
-	response.headers['Content-Type'] = 'text/xml'
-	cruise.grab_status(user, pass)
+	status = cruise.grab_status(user, pass)
+	haml :ci, :locals => { :status => status }
 end
