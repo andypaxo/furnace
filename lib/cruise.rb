@@ -24,14 +24,14 @@ class Cruise
 		}
 	end
 	
+	private ##############################################################################
+	
 	def get_session_token(user, pass)
 		xml =
-'<loginMessage
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<credential name="userName" value="'+user+'" />
-	<credential name="password" value="'+pass+'" />
-</loginMessage>'
+"<loginMessage>
+	<credential name='userName' value='#{user}' />
+	<credential name='password' value='#{pass}' />
+</loginMessage>"
 		login_response = @client.post(
 			'/server/local/RawXmlMessage.aspx',
 			"action=Login&message=#{xml}")
@@ -41,12 +41,7 @@ class Cruise
 	
 	def get_status(session_token)
 		session_token
-		xml =
-'<serverMessage
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	session="'+session_token+'"
-/>'
+		xml = "<serverMessage session='#{session_token}' />"
 		@client.post(
 			'/server/local/RawXmlMessage.aspx',
 			"action=GetProjectStatus&message=#{xml}")
