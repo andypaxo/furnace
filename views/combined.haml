@@ -1,0 +1,18 @@
+%html
+	%head
+		%title Build Status - The Furnace
+	%body
+		%h1 Project activity
+		%ul
+			- github.each do |entry|
+				%li
+					%img{:src => entry['actor']['avatar_url'] + '&s=32'}
+					%span= entry['type']
+					- (entry['payload']['commits'] || []).each do |commit|
+						%p= commit['message']
+		%h1 Build Status
+		%ul
+			- status.each do |project|
+				%li
+					%strong= project[:name]
+					%span= project[:status]

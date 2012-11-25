@@ -6,21 +6,28 @@
 		%h2 GitHub
 		%form{:action => '/activity', :method => 'POST'}
 			%label GitHub userame
-			%input{:name => 'user'}
+			%input{:id => 'github_user', :name => 'user'}
 			%br
 			%label Access token
-			%input{:name => 'auth'}
+			%input{:id => 'github_auth', :name => 'auth'}
 			%br
 			%input{:value => 'View notifications', :type => 'submit'}
 		%h2 CruiseControl.net
 		%form{:action => '/cc_build', :method => 'POST'}
 			%label Server
-			%input{:name => 'server'}
+			%input{:id => 'cc_server', :name => 'server'}
 			%br
 			%label Userame
-			%input{:name => 'user'}
+			%input{:id => 'cc_user', :name => 'user'}
 			%br
 			%label Password
-			%input{:name => 'pass'}
+			%input{:id => 'cc_pass', :name => 'pass'}
 			%br
 			%input{:value => 'View build status', :type => 'submit'}
+		%h2 Combined
+		%form{:action => '/combined', :method => 'GET'}
+			%input{:type => 'hidden', :name => 'params', :id => 'combined_data'}
+			%button{:id => 'view_combined'} View combined
+		
+		%script{:type => 'text/javascript', :src => 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}
+		%script{:type => 'text/javascript', :src => './js/index.js'}
