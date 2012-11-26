@@ -40,7 +40,9 @@ get '/combined' do
 	gh, cc = data['github'], data['cc']
 	haml :combined, :locals => {
 		:github => github_activity(gh['user'], gh['auth']),
-		:status => cc_status(cc['server'], cc['user'], cc['pass'])
+		:status => cc.map { |server|
+			cc_status(server['server'], server['user'], server['pass'])
+		}.flatten
 	}
 end
 
