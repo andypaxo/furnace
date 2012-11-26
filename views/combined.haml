@@ -1,18 +1,25 @@
 %html
 	%head
-		%title Build Status - The Furnace
-	%body
-		%h1 Project activity
-		%ul
-			- github.each do |entry|
-				%li
-					%img{:src => entry['actor']['avatar_url'] + '&s=32'}
-					%span= entry['type']
+		%title Project Status - The Furnace
+		%link{ :href => '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.min.css', :rel => 'stylesheet' }
+		%link{ :href => './style/combined.css', :rel => 'stylesheet' }
+	%body{ :class => 'container-fluid' }
+		%div{ :class => 'row-fluid' }
+			%div{ :class => 'span4' }
+				%h1 Project activity
+				- github.each do |entry|
+					%div{ :class => 'activity-title' }
+						%img{:src => entry['actor']['avatar_url'] + '&s=32'}
+						%strong= entry['actor']['login']
+						%span= entry['repo']['name'].split('/').last
+						%span{ :class => 'activity-small'}= entry['created_at']
 					- (entry['payload']['commits'] || []).each do |commit|
-						%p= commit['message']
-		%h1 Build Status
-		%ul
-			- status.each do |project|
-				%li
-					%strong= project[:name]
-					%span= project[:status]
+						%span= commit['message']
+					%hr
+			%div{ :class => 'span8' }
+				%h1 Build Status
+				- status.each do |project|
+					%span{ :class => 'build-name' }= project[:name]
+					%span{ :class => 'build-label label ' + (project[:status] == 'Success' ? 'label-success' : 'label-warn') }
+						=project[:status]
+					%br

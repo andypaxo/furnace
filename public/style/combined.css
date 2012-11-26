@@ -1,0 +1,8 @@
+body { height:100%; overflow:hidden; }
+h1 { margin-bottom: 1em; }
+
+.activity-title { font-size: 1.6em; margin-bottom: .2em; }
+.activity-small { font-size: .4em; color: #888; }
+
+.build-name, .build-status { font-size: 2em; }
+.build-name { width: 33%; display:inline-block; margin-bottom:1em; }
