@@ -5,18 +5,18 @@
 		%link{ :href => './style/combined.css', :rel => 'stylesheet' }
 	%body{ :class => 'container-fluid' }
 		%div{ :class => 'row-fluid' }
-			%div{ :class => 'span4' }
+			%div{ :class => 'span5' }
 				%h1 Project activity
 				- github.each do |entry|
 					%div{ :class => 'activity-title' }
 						%img{:src => entry['actor']['avatar_url'] + '&s=32'}
-						%strong= entry['actor']['login']
+						%span{ :class => 'activity-actor' }= entry['actor']['login']
 						%span= entry['repo']['name'].split('/').last
 						%span{ :class => 'activity-small'}= entry['created_at']
 					- (entry['payload']['commits'] || []).each do |commit|
 						%span= commit['message']
 					%hr
-			%div{ :class => 'span8' }
+			%div{ :class => 'span7' }
 				%h1 Build Status
 				- status.each do |project|
 					%span{ :class => 'build-name' }= project[:name]
