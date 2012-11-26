@@ -7,4 +7,4 @@ hr { border-top:1px solid #111; border-bottom: 1px solid #333; }
 .activity-actor { font-weight:bold; color:#ddd; }
 
 .build-name, .build-status { font-size: 2em; }
-.build-name { width: 33%; display:inline-block; margin-bottom:1em; }
+.build-name { min-width: 60%; display:inline-block; margin-bottom:1em; }
