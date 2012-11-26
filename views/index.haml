@@ -13,7 +13,7 @@
 			%br
 			%input{:value => 'View notifications', :type => 'submit'}
 		%h2 CruiseControl.net
-		%form{:action => '/cc_build', :method => 'POST'}
+		%form{:action => '/cc_build', :method => 'POST', :class => 'cc_form'}
 			%label Server
 			%input{:id => 'cc_server', :name => 'server'}
 			%br
@@ -24,6 +24,7 @@
 			%input{:id => 'cc_pass', :name => 'pass'}
 			%br
 			%input{:value => 'View build status', :type => 'submit'}
+		%button{:id => 'cc_add'} Add another CCNet server
 		%h2 Combined
 		%form{:action => '/combined', :method => 'GET'}
 			%input{:type => 'hidden', :name => 'params', :id => 'combined_data'}
