@@ -9,7 +9,7 @@
 				%h1 Project activity
 				- github.each do |entry|
 					%div{ :class => 'activity-title' }
-						%img{:src => entry['actor']['avatar_url'] + '&s=32'}
+						%img{:src => entry['actor']['avatar_url'] + '&s=64', :class => 'activity-avatar'}
 						%span{ :class => 'activity-actor' }= entry['actor']['login']
 						%span= entry['repo']['name'].split('/').last
 						%span{ :class => 'activity-small'}= entry['created_at']
@@ -17,7 +17,7 @@
 						%span= commit['message']
 					%hr
 			%div{ :class => 'span7' }
-				%h1 Build Status
+				%h1 Build status
 				- status.each do |project|
 					%span{ :class => 'build-name' }= project[:name]
 					%span{ :class => 'build-label label ' + (project[:status] == 'Success' ? 'label-success' : 'label-warn') }

@@ -5,6 +5,7 @@ hr { border-top:1px solid #111; border-bottom: 1px solid #333; }
 .activity-title { font-size:1.6em; margin-bottom:.2em; }
 .activity-small { font-size:.4em; color:#888; }
 .activity-actor { font-weight:bold; color:#ddd; }
+.activity-avatar { width:32px; height: 32px; }
 
 .build-name, .build-status { font-size: 2em; }
 .build-name { min-width: 60%; display:inline-block; margin-bottom:1em; }
