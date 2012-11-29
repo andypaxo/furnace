@@ -1,5 +1,4 @@
 require 'json'
-require 'lib/web/httpClient'
 
 class Github
 

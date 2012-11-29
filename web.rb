@@ -6,6 +6,7 @@ require 'json'
 require 'net/http'
 require 'lib/github'
 require 'lib/cruise'
+require 'lib/combined_status'
 
 get '/' do
 	haml :index
@@ -37,23 +38,13 @@ end
 
 get '/combined' do
 	data = JSON.parse(params[:params])
+	combined = CombinedStatus.new(
+		Github.new(HttpClient.new),
+		Cruise.new(HttpClient.new))
 	gh, cc = data['github'], data['cc']
-	haml :combined, :locals => {
-		:github => github_activity(gh['user'], gh['auth']),
-		:status => cc.map { |server|
-			cc_status(server['server'], server['user'], server['pass'])
-		}.flatten
+	combined.set_github(gh['user'], gh['auth'])
+	data['cc'].each { |c|
+		combined.add_cruise(c['server'], c['user'], c['pass'])
 	}
-end
-
-def github_activity(user, auth)
-	github = Github.new(HttpClient.new)
-	github.set_access_token(auth)
-	github.grab_activity(user)
-end
-
-def cc_status(server, user, pass)
-	client = HttpClient.new.set_server(server, false)
-	cruise = Cruise.new(client)	
-	cruise.grab_status(user, pass)
+	haml :combined, :locals => combined.get_status
 end

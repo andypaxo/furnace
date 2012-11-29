@@ -1,1 +1,2 @@
+clear
 bundle exec rspec spec/

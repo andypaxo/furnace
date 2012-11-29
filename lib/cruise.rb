@@ -9,7 +9,8 @@ class Cruise
 		@client = client
 	end
 
-	def grab_status(user, pass)
+	def grab_status(server, user, pass)
+		@client.set_server(server, false)
 		session_token = get_session_token(user, pass)
 		response = get_status(session_token)
 		
