@@ -20,6 +20,6 @@
 				%h1 Build status
 				- status.each do |project|
 					%span{ :class => 'build-name' }= project[:name]
-					%span{ :class => 'build-label label ' + (project[:status] == 'Success' ? 'label-success' : 'label-warn') }
+					%span{ :class => 'build-label label ' + (project[:status] == 'Success' ? 'label-success' : 'label-warning') }
 						=project[:status]
 					%br
