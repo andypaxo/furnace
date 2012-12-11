@@ -14,7 +14,7 @@
 						%span= entry['repo']['name'].split('/').last
 						%span{ :class => 'activity-small'}= entry['created_at']
 					- (entry['payload']['commits'] || []).each do |commit|
-						%span= commit['message']
+						%p{:class=>'commit-message'}= commit['message']
 					%hr
 			%div{ :class => 'span7' }
 				%h1 Build status
