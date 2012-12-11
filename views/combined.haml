@@ -13,7 +13,7 @@
 						%span{ :class => 'activity-actor' }= entry['actor']['login']
 						%span= entry['repo']['name'].split('/').last
 						%span{ :class => 'activity-small'}= entry['created_at']
-					- (entry['payload']['commits'] || []).each do |commit|
+					- (entry['payload']['commits'] || []).select{|commit| !commit['message'].start_with? 'Merge branch '}.each do |commit|
 						%p{:class=>'commit-message'}= commit['message']
 					%hr
 			%div{ :class => 'span7' }
